@@ -140,6 +140,9 @@ define HOST_NCURSES_BUILD_CMDS
 	$(MAKE) -C $(@D)/progs tic
 endef
 
+HOST_NCURSES_CONF_ENV = \
+	CPPFLAGS=-P
+
 HOST_NCURSES_CONF_OPTS = \
 	--with-shared --without-gpm \
 	--without-manpages \
