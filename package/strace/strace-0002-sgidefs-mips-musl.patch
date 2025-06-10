@@ -1,0 +1,23 @@
+diff '--color=auto' -urN strace-4.9.orig/defs.h strace-4.9.fixed/defs.h
+--- strace-4.9.orig/defs.h	2014-08-08 16:38:26.000000000 -0700
++++ strace-4.9.fixed/defs.h	2025-06-10 14:47:38.088506927 -0700
+@@ -32,7 +32,7 @@
+ #endif
+ 
+ #ifdef MIPS
+-# include <sgidefs.h>
++# include <asm/sgidefs.h>
+ # if _MIPS_SIM == _MIPS_SIM_ABI64
+ #  define LINUX_MIPSN64
+ # elif _MIPS_SIM == _MIPS_SIM_NABI32
+@@ -159,6 +159,10 @@
+ # include <sys/ptrace.h>
+ #endif
+ 
++#if defined(MIPS)
++# include <asm/ptrace.h>  /* struct pt_regs */
++#endif
++
+ #if defined(POWERPC)
+ # include <asm/ptrace.h>
+ #endif
