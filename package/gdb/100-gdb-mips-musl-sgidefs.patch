@@ -1,0 +1,39 @@
+diff '--color=auto' -urN gdb-7.7.1.orig/gdb/linux-nat.c gdb-7.7.1.fix/gdb/linux-nat.c
+--- gdb-7.7.1.orig/gdb/linux-nat.c	2014-05-05 14:51:24.000000000 -0700
++++ gdb-7.7.1.fix/gdb/linux-nat.c	2025-06-10 15:23:22.961570180 -0700
+@@ -171,6 +171,16 @@
+ #define O_LARGEFILE 0
+ #endif
+ 
++/* This is the kernel's hard limit.  Not to be confused with
++   SIGRTMIN.  */
++#ifndef __SIGRTMIN
++#define __SIGRTMIN 32
++#endif
++
++#ifndef W_STOPCODE
++#define W_STOPCODE(sig) ((sig) << 8 | 0x7f)
++#endif
++
+ /* The single-threaded native GNU/Linux target_ops.  We save a pointer for
+    the use of the multi-threaded target.  */
+ static struct target_ops *linux_ops;
+@@ -5008,6 +5018,7 @@
+ 
+ /* Return the set of signals used by the threads library in *SET.  */
+ 
++
+ void
+ lin_thread_get_thread_signals (sigset_t *set)
+ {
+diff '--color=auto' -urN gdb-7.7.1.orig/gdb/mips-linux-nat.c gdb-7.7.1.fix/gdb/mips-linux-nat.c
+--- gdb-7.7.1.orig/gdb/mips-linux-nat.c	2014-05-05 14:51:24.000000000 -0700
++++ gdb-7.7.1.fix/gdb/mips-linux-nat.c	2025-06-10 15:01:15.135209472 -0700
+@@ -32,7 +32,7 @@
+ #include "gdb_proc_service.h"
+ #include "gregset.h"
+ 
+-#include <sgidefs.h>
++#include <asm/sgidefs.h>
+ #include <sys/ptrace.h>
+ #include <asm/ptrace.h>
