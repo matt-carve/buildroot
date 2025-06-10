@@ -1,0 +1,10 @@
+diff '--color=auto' -urN musl-1.1.5.orig/include/netinet/if_ether.h musl-1.1.5.fix/include/netinet/if_ether.h
+--- musl-1.1.5.orig/include/netinet/if_ether.h	2014-10-14 10:32:42.000000000 -0700
++++ musl-1.1.5.fix/include/netinet/if_ether.h	2025-06-10 16:30:54.378697281 -0700
+@@ -125,5 +125,6 @@
+ 	(enaddr)[5] = ((uint8_t *)ipaddr)[3]; \
+ } while(0)
+ 
++#define __UAPI_DEF_ETHHDR       0
+ 
+ #endif

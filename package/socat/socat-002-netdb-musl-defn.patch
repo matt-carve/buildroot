@@ -1,0 +1,14 @@
+--- socat-2.0.0-b7.orig/compat.h	2010-06-20 03:04:54.000000000 -0700
++++ socat-2.0.0-b7.fix/compat.h	2025-06-10 15:43:26.351117426 -0700
+@@ -613,6 +613,11 @@
+ extern const char *hstrerror(int);
+ #endif
+ 
++/* Define NETDB_INTERNAL h_errno return code if it is missing */
++#ifndef NETDB_INTERNAL
++#define NETDB_INTERNAL -1
++#endif
++
+ /*****************************************************************************/
+ /* here are the declarations of compat.c */
+ 
