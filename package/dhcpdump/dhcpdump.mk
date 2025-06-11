@@ -15,8 +15,11 @@ ifeq ($(BR2_PREFER_STATIC_LIB),y)
 DHCPDUMP_LIBS += $(shell $(STAGING_DIR)/usr/bin/pcap-config --static --additional-libs)
 endif
 
+# Use gnu-compat names for udp struct members (when using musl)
+DHCPDUMP_CFLAGS = -D_GNU_SOURCE
+
 define DHCPDUMP_BUILD_CMDS
-	$(MAKE) -C $(@D) CC="$(TARGET_CC) $(TARGET_CFLAGS)" LIBS="$(DHCPDUMP_LIBS)"
+	$(MAKE) -C $(@D) CC="$(TARGET_CC) $(TARGET_CFLAGS) $(DHCPDUMP_CFLAGS)" LIBS="$(DHCPDUMP_LIBS)"
 endef
 
 define DHCPDUMP_INSTALL_TARGET_CMDS
