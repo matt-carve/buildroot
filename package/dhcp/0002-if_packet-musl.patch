@@ -1,0 +1,15 @@
+# https://github.com/analogdevicesinc/buildroot/blob/master/package/busybox/0001-networking-libiproute-use-linux-if_packet.h-instead-.patch
+# lpf.c:40:27: fatal error: net/if_packet.h: No such file or directory
+# #include <net/if_packet.h>
+diff '--color=auto' -urN dhcp-4.1-ESV-R10.orig/common/lpf.c dhcp-4.1-ESV-R10.fix/common/lpf.c
+--- dhcp-4.1-ESV-R10.orig/common/lpf.c	2025-06-11 09:32:52.623411180 -0700
++++ dhcp-4.1-ESV-R10.fix/common/lpf.c	2025-06-11 09:33:31.078959177 -0700
+@@ -37,7 +37,7 @@
+ #include <linux/filter.h>
+ #include <linux/if_ether.h>
+ #include <netinet/in_systm.h>
+-#include <net/if_packet.h>
++#include <linux/if_packet.h>
+ #include "includes/netinet/ip.h"
+ #include "includes/netinet/udp.h"
+ #include "includes/netinet/if_ether.h"
