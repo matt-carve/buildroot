@@ -1,0 +1,27 @@
+diff '--color=auto' -urN host-bison-3.0.2.orig/lib/fseterr.c host-bison-3.0.2.fix/lib/fseterr.c
+--- host-bison-3.0.2.orig/lib/fseterr.c	2025-06-10 17:06:12.148415819 -0700
++++ host-bison-3.0.2.fix/lib/fseterr.c	2025-06-10 17:07:18.225277509 -0700
+@@ -29,7 +29,7 @@
+   /* Most systems provide FILE as a struct and the necessary bitmask in
+      <stdio.h>, because they need it for implementing getc() and putc() as
+      fast macros.  */
+-#if defined _IO_ftrylockfile || __GNU_LIBRARY__ == 1 /* GNU libc, BeOS, Haiku, Linux libc5 */
++#if defined _IO_EOF_SEEN || __GNU_LIBRARY__ == 1 /* GNU libc, BeOS, Haiku, Linux libc5 */
+   fp->_flags |= _IO_ERR_SEEN;
+ #elif defined __sferror || defined __DragonFly__ /* FreeBSD, NetBSD, OpenBSD, DragonFly, Mac OS X, Cygwin */
+   fp_->_flags |= __SERR;
+diff '--color=auto' -urN host-bison-3.0.2.orig/lib/stdio-impl.h host-bison-3.0.2.fix/lib/stdio-impl.h
+--- host-bison-3.0.2.orig/lib/stdio-impl.h	2025-06-10 17:06:12.151415860 -0700
++++ host-bison-3.0.2.fix/lib/stdio-impl.h	2025-06-10 17:07:04.752107524 -0700
+@@ -109,4 +109,11 @@
+ #  define _flag __flag
+ # endif
+ 
++/* Glibc 2.28 made _IO_IN_BACKUP private.  For now, work around this
++   problem by defining it ourselves.  FIXME: Do not rely on glibc
++   internals.  */
++#if !defined _IO_IN_BACKUP && defined _IO_EOF_SEEN
++# define _IO_IN_BACKUP 0x100
++#endif
++
+ #endif
