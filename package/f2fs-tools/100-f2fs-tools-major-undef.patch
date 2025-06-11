@@ -1,0 +1,12 @@
+# Undefined symbols (major, etc) with musl
+diff '--color=auto' -urN f2fs-tools-858c4039c85f7c00c57925902985701b1e083555.orig/tools/fibmap.c f2fs-tools-858c4039c85f7c00c57925902985701b1e083555.fix/tools/fibmap.c
+--- f2fs-tools-858c4039c85f7c00c57925902985701b1e083555.orig/tools/fibmap.c	2025-06-11 12:11:32.925261502 -0700
++++ f2fs-tools-858c4039c85f7c00c57925902985701b1e083555.fix/tools/fibmap.c	2025-06-11 12:12:40.794419100 -0700
+@@ -11,6 +11,7 @@
+ #include <linux/hdreg.h>
+ #include <linux/types.h>
+ #include <linux/fs.h>
++#include <sys/sysmacros.h>
+ 
+ struct file_ext {
+ 	__u32 f_pos;
