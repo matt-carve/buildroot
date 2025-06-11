@@ -1,0 +1,17 @@
+# https://www.openwall.com/lists/musl/2013/01/23/6
+# error: unknown type name 'loff_t' w/ musl
+diff '--color=auto' -urN cramfs-1.1.orig/mkcramfs.c cramfs-1.1.fix/mkcramfs.c
+--- cramfs-1.1.orig/mkcramfs.c	2025-06-11 09:17:41.526945687 -0700
++++ cramfs-1.1.fix/mkcramfs.c	2025-06-11 09:25:44.891806295 -0700
+@@ -22,6 +22,11 @@
+  * If you change the disk format of cramfs, please update fs/cramfs/README.
+  */
+ 
++/*
++ * https://www.openwall.com/lists/musl/2013/01/23/6
++ */
++#define _GNU_SOURCE 1
++
+ #include <sys/types.h>
+ #include <stdio.h>
+ #include <sys/stat.h>
