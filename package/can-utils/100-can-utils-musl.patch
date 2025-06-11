@@ -1,0 +1,34 @@
+diff '--color=auto' -urN can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.orig/log2asc.c can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.fix/log2asc.c
+--- can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.orig/log2asc.c	2025-06-11 09:07:27.969584715 -0700
++++ can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.fix/log2asc.c	2025-06-11 09:08:55.777739791 -0700
+@@ -43,7 +43,8 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
+-#include <time.h>
++#include <sys/time.h>
++#include <stdlib.h>
+ #include <libgen.h>
+ #include <unistd.h>
+ 
+diff '--color=auto' -urN can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.orig/slcan_attach.c can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.fix/slcan_attach.c
+--- can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.orig/slcan_attach.c	2025-06-11 09:07:27.969584715 -0700
++++ can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.fix/slcan_attach.c	2025-06-11 09:11:25.182690396 -0700
+@@ -49,6 +49,7 @@
+ #include <getopt.h>
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
++#include <linux/sockios.h>
+ #include <net/if.h>
+ #include <termios.h>
+ 
+diff '--color=auto' -urN can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.orig/slcand.c can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.fix/slcand.c
+--- can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.orig/slcand.c	2025-06-11 09:07:27.969584715 -0700
++++ can-utils-111f8d3acf6f6b30bf208fd9c98399c5fb9d29de.fix/slcand.c	2025-06-11 09:13:34.790536469 -0700
+@@ -34,6 +34,7 @@
+ #include <pwd.h>
+ #include <signal.h>
+ #include <sys/ioctl.h>
++#include <linux/sockios.h>
+ #include <net/if.h>
+ #include <termios.h>
