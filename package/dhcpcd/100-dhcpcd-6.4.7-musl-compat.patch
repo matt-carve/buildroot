@@ -1,0 +1,13 @@
+diff '--color=auto' -urN dhcpcd-6.4.7.orig/compat/svis.c dhcpcd-6.4.7.fix/compat/svis.c
+--- dhcpcd-6.4.7.orig/compat/svis.c	2025-06-11 09:38:56.160737264 -0700
++++ dhcpcd-6.4.7.fix/compat/svis.c	2025-06-11 10:41:52.661611342 -0700
+@@ -71,6 +71,10 @@
+ #undef BELL
+ #define BELL '\a'
+ 
++#ifndef u_char
++#define u_char unsigned char
++#endif
++
+ #define isoctal(c)	(((u_char)(c)) >= '0' && ((u_char)(c)) <= '7')
+ #define iswhite(c)	(c == ' ' || c == '\t' || c == '\n')
